@@ -2,6 +2,7 @@ package FacebookPages;
 
 import BaseClass.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,30 +15,49 @@ import java.time.Duration;
 public class RegistrationPage extends TestBase {
 
     WebDriverWait wait;
+    JavascriptExecutor js;
 
     public RegistrationPage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
         wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+        js = (JavascriptExecutor) driver;
     }
 
-    @FindBy(xpath = "//a[contains(text(),'Create new account')]")
-    WebElement CreateAccount;
+    @FindBy(xpath = "//nav[@class='x-nav']/ul[2]/li[1]/a")
+    WebElement LoginTab;
 
-    @FindBy(xpath = "//button[@name='websubmit']")
-    WebElement SignupButton;
+    @FindBy(xpath = "//button[contains(text(),'Continue')]")
+    WebElement ContinueButton;
 
+
+
+    @FindBy(xpath = "//a[contains(text(),'Register')]")
+    WebElement Register;
+
+    @FindBy(xpath = "//button[contains(text(),'Create your account')]")
+    WebElement CreateYourAccount;
+
+
+
+    public void NavigatetoCreateAccoutPage() {
+        LoginTab.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Create your account')]")));
+        JavascriptExecutor exe = (JavascriptExecutor) driver;
+        String element = CreateYourAccount.getText();
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
 
     public void CreateAccout(){
-        CreateAccount.click();
+        Register.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='websubmit']")));
 
-        boolean status=SignupButton.isDisplayed();
+        boolean status=Register.isDisplayed();
         if (status){
-            System.out.println("Sign up button is Displayed"+SignupButton.getText());
+            System.out.println("Register button is Displayed"+Register.getText());
         }
         else {
-            System.out.println("Signup Buttin is not Displayrd");
+            System.out.println("Regiter Buttin is not Displayed");
         }
     }
 
