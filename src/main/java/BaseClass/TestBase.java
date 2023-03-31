@@ -1,17 +1,23 @@
 package BaseClass;
 
+import AmazonHelper.WaitHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.FindBy;
 
 import java.time.Duration;
 import java.util.Locale;
 
 public class TestBase {
+
+    @FindBy(xpath = "//input[@id='twotabsearchtextbox']")
+    WebElement SearcBox;
 
     public static WebDriver driver;
 
@@ -43,7 +49,8 @@ public class TestBase {
                 break;
         }
         driver.manage().window().maximize();
-        driver.get("https://wordpress.com/hosting/?aff=58022&cid=8348279&cmp_id=9808156547&adg_id=98727271423&kwd=wordpress&device=c");
+        driver.get("https://www.amazon.com/");
+        //new WaitHelper().waitForElementPresent(driver,SearcBox,10);
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
     }
 }

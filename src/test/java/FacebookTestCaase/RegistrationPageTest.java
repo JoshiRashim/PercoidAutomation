@@ -1,8 +1,8 @@
 package FacebookTestCaase;
 
 import BaseClass.TestBase;
-import FacebookPages.RegistrationPage;
-import org.testng.annotations.AfterClass;
+import AmazonPage.RegistrationPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -18,18 +18,12 @@ public class RegistrationPageTest extends TestBase {
         registrationPage=new RegistrationPage(driver);
     }
     @Test
-    public void NavigatetoLoginTest(){
-        registrationPage.NavigatetoCreateAccoutPage();
+    public void AmazonTitleOfPage(){
+        String Title=registrationPage.GetTitleofPage();
+        System.out.println("Title of page:-"+Title);
+        String Expected_Output="Amazon.com. Spend less. Smile more.";
+        Assert.assertEquals(Title,Expected_Output,"String is not Matched");
     }
 
-   // @Test
-    public void SignupPageTest()
-    {
-        registrationPage.CreateAccout();
-    }
-    //@AfterClass
-    public void Aftercalss()
-    {
-        driver.quit();
-    }
+
 }
