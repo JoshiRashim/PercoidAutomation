@@ -54,6 +54,7 @@ public class RegistrationPage extends TestBase {
 
     public void CreateAccount(){
         CreateAccoutButton.click();
+
         new WaitHelper().waitForElementPresent(driver,ContinueButton,10);
         Fname.sendKeys("Mathew");
     }
