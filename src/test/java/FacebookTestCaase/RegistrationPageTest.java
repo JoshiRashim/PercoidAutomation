@@ -1,5 +1,6 @@
 package FacebookTestCaase;
 
+import AmazonHelper.DropDownHelper;
 import BaseClass.TestBase;
 import AmazonPage.RegistrationPage;
 import org.testng.Assert;
@@ -31,6 +32,10 @@ public class RegistrationPageTest extends TestBase {
     @Test(priority = 3)
     public void CreateAccountTest(){
         registrationPage.CreateAccount();
+    }
+
+    public void pickDropDownTest() throws InterruptedException {
+        new DropDownHelper().PickDropDown("Male");
     }
 
 
