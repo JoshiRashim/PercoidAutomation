@@ -49,7 +49,7 @@ public class TestBase {
                 break;
         }
         driver.manage().window().maximize();
-        driver.get("https://www.amazon.com/");
+        driver.get("https://esewa.com.np/#/home");
         //new WaitHelper().waitForElementPresent(driver,SearcBox,10);
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
     }
