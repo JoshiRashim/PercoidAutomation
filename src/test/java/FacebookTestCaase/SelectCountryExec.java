@@ -32,12 +32,12 @@ public class SelectCountryExec extends TestBase {
         alerts.readalert();
     }
     @Test
-    public void switchTab(String value){
+    public void switchTab(){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofMinutes(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='payment-nav ng-scope']/li[1]/a")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='payment-nav ng-scope']/li[2]/a")));
         driver.findElement(By.xpath("//h5[contains(text(),'Daraz ')]")).click();
-        driver.findElement(By.xpath("//div[@id='"+value+"'"));
+        //driver.findElement(By.xpath("//div[@id='"+value+"'"));
         ArrayList<String> newTab=new ArrayList<>(driver.getWindowHandles());
         System.out.println(newTab);
         driver.switchTo().window(newTab.get(1));

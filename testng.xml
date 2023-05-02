@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <listeners>
+        <listener class-name="ExtentReport.Listeners"></listener>
+
+    </listeners>
     <test verbose="2" preserve-order="true" name="D:/Automation/PercoidTestAutomation">
         <classes>
             <class name="FacebookTestCaase.RegistrationPageTest">
                 <methods>
                     <include name="GotoAccountTab"/>
-                    <include name="CreateAccountTest"/>
+                    <include name="CreateAccountT est"/>
                     <include name="CountHeadphones"/>
                     <include name="navcomponents"/>
                     <include name="countComponents"/>
