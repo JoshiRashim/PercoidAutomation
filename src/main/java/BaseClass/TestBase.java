@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v110.network.Network;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
@@ -29,12 +31,13 @@ public class TestBase {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options=new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
-
+                options.addArguments("--disable-application-cache");
                 DesiredCapabilities cp=new DesiredCapabilities();
                 cp.setCapability(ChromeOptions.CAPABILITY,options);
                 options.merge(cp);
 
                 driver=new ChromeDriver(options);
+
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -48,6 +51,11 @@ public class TestBase {
                 driver=null;
                 break;
         }
+        /*DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        devTools.createSession();
+        devTools.send(Network.setCacheDisabled(true));
+        devTools.addListener(Network.responseReceived(), responseReceived -> assertEquals(false, responseReceived.getResponse().getFromDiskCache()));
+        devTools.send(Network.clearBrowserCache());*/
         driver.manage().window().maximize();
         driver.get("https://esewa.com.np/#/home");
         //new WaitHelper().waitForElementPresent(driver,SearcBox,10);
